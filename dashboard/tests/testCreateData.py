@@ -9,6 +9,7 @@ import random
 # third-party package
 import MySQLdb
 import pandas as pd
+from sqlalchemy import create_engine
 
 # user-defined package
 from .. import r_kv, r_db, config
@@ -116,7 +117,10 @@ def test_create_mysql_data():
     data.name = [i.replace('\xc8', '') for i in data.name]
     data.name = [i.replace('\xca', '') for i in data.name]
 
-    data.to_sql('businesses', conn.conn, if_exists='append', flavor='mysql', index=False)
+    #data.to_sql('businesses', conn.conn, if_exists='append', flavor='mysql', index=False)
+    #data.to_sql('businesses', conn.conn, if_exists='append', index=False)
+    engine = create_engine("mysql+mysqldb://ipd:thanks@localhost/IPD_data")
+    data.to_sql('businesses', con=engine, if_exists='append', index=False, index_label=None)
 
 
 @utils.print_func_name

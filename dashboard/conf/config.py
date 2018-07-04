@@ -11,7 +11,7 @@ redis_db_port = 6379
 redis_db_db   = 1
 
 # web server
-app_host  = '127.0.0.1:9090'
+app_host  = '0.0.0.0:9090'
 
 # redis key
 DASH_ID_KEY = "dash_id"
